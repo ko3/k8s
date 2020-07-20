@@ -15,3 +15,5 @@ kubectl apply -f <filename> <br />
 kubectl delete -f <filename> <br />
 
 kubectl delete <objectType> <objectName> <br />
+
+Do kubectl apply on all 3 files, should be able to access http://<minikube ip or ingress-service ip>/hello <br />
