@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: message-domain-service-cluster-ip
+spec:
+  type: ClusterIP
+  selector:
+    component: message-domain-service
+  ports:
+    - port: 5000
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: message-domain-service-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: message-domain-service
+  template:
+    metadata:
+      labels:
+        component: message-domain-service
+    spec:
+      containers:
+        - name: message-domain
+          image: koutilya/hello-api
+          ports:
+            - containerPort: 8080
